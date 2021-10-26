@@ -4,10 +4,15 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QWidget>
+#include <vector>
+using std::vector;
+
+//const static int gl_block_size = 5;
+//QPixmap pixmaps[gl_block_size];
 
 class Block : public QObject
 {
-    Q_OBJECT;
+    Q_OBJECT
 
 protected:
     int row_;
@@ -35,6 +40,7 @@ public slots:
     void paint();
 
 public:
+    BlockPainter();
     BlockPainter(QPainter *&painter);
 };
 
@@ -44,7 +50,7 @@ class Scene : public QWidget
 
 private:
     QPainter *painter_;
-    BlockPainter *block_;
+    vector<BlockPainter> *block_;
 
 public:
     Scene(const int &row, const int &col);

@@ -1,4 +1,4 @@
-#include "../include/scene.h"
+#include "./include/scene.h"
 
 // class Block
 void Block::mousePressEvent(QMouseEvent *event)
@@ -30,17 +30,22 @@ BlockPainter::BlockPainter(QPainter *&painter) : painter_(painter)
 {
 }
 
+BlockPainter::BlockPainter() : painter_(NULL)
+{
+}
+
 // class Scene
 Scene ::Scene(const int &row, const int &col)
 {
     painter_ = new QPainter(this);
-    block_ = new BlockPainter[row * col](painter_);
+    block_ = new vector<BlockPainter>(row * col);
 
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
         {
-            block_[i * col + j].init(i, j);
+            block_->at(i * col + j).painter_ = painter_;
+            block_->at(i * col + j).init(i, j);
             // TODO: connect!
         }
     }
