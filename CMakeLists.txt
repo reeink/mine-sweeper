@@ -17,12 +17,19 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 set(TS_FILES res/MineSweeper_zh_CN.ts)
 
 set(PROJECT_SOURCES
+        src/about.cpp
+        src/about.ui
+        src/gamemode.cpp
+        src/gamemode.ui
         src/main.cpp
         src/mainwindow.cpp
+        src/mainwindow.ui
         src/scene.cpp
+        include/about.h
+        include/gamemode.h
         include/mainwindow.h
         include/scene.h
-        src/mainwindow.ui
+        res/res.qrc
         ${TS_FILES}
 )
 

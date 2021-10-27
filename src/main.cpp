@@ -10,14 +10,18 @@ int main(int argc, char *argv[])
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
+    for (const QString &locale : uiLanguages)
+    {
         const QString baseName = "MineSweeper_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
+        if (translator.load(":/i18n/" + baseName))
+        {
             a.installTranslator(&translator);
             break;
         }
     }
     MainWindow w;
     w.show();
+    GameMode mode_page;
+    mode_page.exec();
     return a.exec();
 }

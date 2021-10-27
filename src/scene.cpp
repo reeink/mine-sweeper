@@ -22,8 +22,9 @@ void Block::init(const int &row, const int &col)
 }
 
 // class BlockPainter
-void BlockPainter::paint()
+void BlockPainter::paint(QPixmap *&pixmap)
 {
+    //painter_->drawImage(row_ * gl_block_size, col_ * gl_block_size, (row_ + 1) * gl_block_size, (col_ + 1) * gl_block_size, pixmap);
 }
 
 BlockPainter::BlockPainter(QPainter *&painter) : painter_(painter)
@@ -35,7 +36,7 @@ BlockPainter::BlockPainter() : painter_(NULL)
 }
 
 // class Scene
-Scene ::Scene(const int &row, const int &col)
+Scene::Scene(const int &row, const int &col) : row_(row), col_(col)
 {
     painter_ = new QPainter(this);
     block_ = new vector<BlockPainter>(row * col);
@@ -49,10 +50,18 @@ Scene ::Scene(const int &row, const int &col)
             // TODO: connect!
         }
     }
+
+    pixmaps_ = new QPixmap[5];
 }
 
 Scene::~Scene()
 {
     delete[] painter_;
     delete[] block_;
+}
+
+void Scene::paint(int &row, int &col)
+{
+    //block_->at(row * col_ + col).paint();
+    
 }

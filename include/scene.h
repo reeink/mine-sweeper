@@ -2,13 +2,13 @@
 #include <QObject>
 #include <QMouseEvent>
 #include <QGraphicsScene>
+#include <QPixmap>
 #include <QPainter>
 #include <QWidget>
 #include <vector>
 using std::vector;
 
-//const static int gl_block_size = 5;
-//QPixmap pixmaps[gl_block_size];
+const int gl_block_size = 50;
 
 class Block : public QObject
 {
@@ -36,12 +36,10 @@ class BlockPainter : public Block
 private:
     QPainter *painter_;
 
-public slots:
-    void paint();
-
 public:
     BlockPainter();
     BlockPainter(QPainter *&painter);
+    void paint(QPixmap *&pixmap);
 };
 
 class Scene : public QWidget
@@ -49,10 +47,15 @@ class Scene : public QWidget
     Q_OBJECT;
 
 private:
+    int row_, col_;
     QPainter *painter_;
+    QPixmap *pixmaps_;
     vector<BlockPainter> *block_;
 
 public:
     Scene(const int &row, const int &col);
     ~Scene();
+
+public slots:
+    void paint(int &row, int &col);
 };
