@@ -17,9 +17,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::changeModeInfo(GameModeInfo &mode_info)
+GameModeInfo &MainWindow::getModeInfo()
 {
-    mode_info_ = mode_info;
+    return mode_info_;
 }
 
 void MainWindow::on_about_triggered()
@@ -56,4 +56,10 @@ void MainWindow::on_startButton_clicked()
         timer.stop();
     }
     ui->startButton->setIconSize(ui->startButton->size() / 4 * 3);
+}
+
+void MainWindow::initScene()
+{
+    scene_ = new Scene(mode_info_.row, mode_info_.col, this);
+    
 }

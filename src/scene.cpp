@@ -11,7 +11,6 @@ void Block::mousePressEvent(QMouseEvent *event)
     {
         emit mark(row_, col_); //标记方块信号
     }
-
     emit check(); //检查是否做完
 }
 
@@ -36,9 +35,14 @@ BlockPainter::BlockPainter() : painter_(NULL)
 }
 
 // class Scene
-Scene::Scene(const int &row, const int &col) : row_(row), col_(col)
+Scene::Scene(QWidget *parent) : QWidget(parent)
 {
-    painter_ = new QPainter(this);
+}
+Scene::Scene(const int &row, const int &col, QWidget *parent) : QWidget(parent),
+                                                                row_(row),
+                                                                col_(col)
+{
+    //painter_ = new QPainter(this);
     block_ = new vector<BlockPainter>(row * col);
 
     for (int i = 0; i < row; i++)
@@ -51,7 +55,10 @@ Scene::Scene(const int &row, const int &col) : row_(row), col_(col)
         }
     }
 
-    pixmaps_ = new QPixmap[5];
+    //pixmaps_ = new QPixmap[5];
+
+    // QLine line(0, 0, 200, 200);
+    // this->painter_->drawLine(line);
 }
 
 Scene::~Scene()
@@ -63,5 +70,4 @@ Scene::~Scene()
 void Scene::paint(int &row, int &col)
 {
     //block_->at(row * col_ + col).paint();
-    
 }

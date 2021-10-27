@@ -5,9 +5,10 @@
 #include <QTime>
 #include <QTimer>
 #include <QPainter>
+#include <QDebug>
 #include "./include/gamemode.h"
 #include "./include/about.h"
-
+#include "./include/scene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -23,7 +24,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void changeModeInfo(GameModeInfo &mode_info);
+    GameModeInfo &getModeInfo();
+    void initScene();
 
 private slots:
     void on_about_triggered();
@@ -37,5 +39,6 @@ private:
     QTimer timer;
     bool is_start;
     GameModeInfo mode_info_;
+    Scene *scene_;
 };
 #endif // MAINWINDOW_H

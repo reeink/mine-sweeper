@@ -27,8 +27,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>20</y>
+      <x>120</x>
+      <y>10</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -83,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>20</y>
+      <y>10</y>
       <width>64</width>
       <height>23</height>
      </rect>
@@ -101,24 +101,11 @@
      <number>0</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>120</y>
-      <width>81</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
    <widget class="QLCDNumber" name="timeKeeper">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>10</y>
       <width>91</width>
       <height>23</height>
      </rect>

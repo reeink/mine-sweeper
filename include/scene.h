@@ -2,6 +2,7 @@
 #include <QObject>
 #include <QMouseEvent>
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include <QPainter>
 #include <QWidget>
@@ -10,7 +11,12 @@ using std::vector;
 
 const int gl_block_size = 50;
 
-class Block : public QObject
+namespace Ui
+{
+    class Scene;
+}
+
+class Block : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -53,7 +59,8 @@ private:
     vector<BlockPainter> *block_;
 
 public:
-    Scene(const int &row, const int &col);
+    Scene(QWidget *parent = NULL);
+    Scene(const int &row, const int &col, QWidget *parent = NULL);
     ~Scene();
 
 public slots:
