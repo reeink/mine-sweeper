@@ -23,6 +23,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void changeModeInfo(GameModeInfo &mode_info);
 
 private slots:
     void on_about_triggered();
@@ -35,5 +36,6 @@ private:
     QTime time;
     QTimer timer;
     bool is_start;
+    GameModeInfo mode_info_;
 };
 #endif // MAINWINDOW_H

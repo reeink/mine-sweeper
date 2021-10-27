@@ -2,6 +2,7 @@
 #define GAMEMODE_H
 
 #include <QDialog>
+#include <QDebug>
 
 namespace Ui
 {
@@ -21,7 +22,7 @@ class GameMode : public QDialog
     Q_OBJECT
 
 public:
-    explicit GameMode(QWidget *parent = nullptr);
+    explicit GameMode(GameModeInfo &mode_info, QWidget *parent = nullptr);
     ~GameMode();
 
 private slots:
@@ -36,6 +37,7 @@ private slots:
 
 private:
     Ui::GameMode *ui;
+    GameModeInfo &mode_info_;
 };
 
 #endif // GAMEMODE_H

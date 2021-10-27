@@ -17,6 +17,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::changeModeInfo(GameModeInfo &mode_info)
+{
+    mode_info_ = mode_info;
+}
+
 void MainWindow::on_about_triggered()
 {
     About *about_window = new About;
