@@ -24,8 +24,8 @@ protected:
     int col_;
 
 signals:
-    void click(const int &row, const int &col);
-    void mark(const int &row, const int &col);
+    void click(const int row, const int col);
+    void mark(const int row, const int col);
     void check();
 
 public:
@@ -56,6 +56,7 @@ private:
     QPainter *painter_;
     QPixmap *pixmaps_;
     vector<BlockPainter> *block_;
+    Mine *mine_data_;
 
 public:
     Scene(QObject *parent = NULL);
@@ -63,5 +64,5 @@ public:
     ~Scene();
 
 public slots:
-    void set(int &row, int &col, const int status);
+    void updateBlockUi(const int row, const int col, const int status);
 };

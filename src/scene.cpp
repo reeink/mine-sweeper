@@ -58,6 +58,7 @@ Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(p
                                                                 col_(col)
 {
     block_ = new vector<BlockPainter>(row * col);
+    mine_data_ = new Mine(row, col, 10, 1, 1);
     qDebug() << "初始化场景中...";
     int pos;
     for (int i = 0; i < row; i++)
@@ -69,11 +70,10 @@ Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(p
 
             block_->at(pos).setPos(i * gl_block_size, j * gl_block_size);
             addItem(&(block_->at(pos)));
-            QPixmap block(":/png/block");
-            block = block.scaled(gl_block_size, gl_block_size);
-
-            block_->at(pos).setPixmap(block);
+            updateBlockUi(i, j, mine_data_->VisibleData(i + 1, j + 1));
             // TODO: connect!
+            qDebug()<<"connection 1"<<connect(&(block_->at(pos)), SIGNAL(click(const int , const int )), mine_data_, SLOT(click(const int , const int )));
+            qDebug()<<"connection 2"<<connect(mine_data_, SIGNAL(updateUserMap(const int , const int , const int )), this, SLOT(updateBlockUi(const int, const int, const int )));
         }
     }
     qDebug() << "block大小：" << block_->at(0).boundingRect().width();
@@ -85,7 +85,7 @@ Scene::~Scene()
     delete[] block_;
 }
 
-void Scene::set(int &row, int &col, const int status)
+void Scene::updateBlockUi(const int row, const int col, const int status)
 {
     block_->at(row * col_ + col).set(status);
 }
