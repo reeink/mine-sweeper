@@ -1,20 +1,20 @@
 <RCC>
     <qresource prefix="/png">
         <file alias="bomb">png/001-bomb.png</file>
-        <file>png/002-flags.png</file>
-        <file>png/003-question-mark.png</file>
-        <file>png/004-square.png</file>
-        <file>png/005-square-1.png</file>
-        <file alias="block">png/006-square-2.png</file>
-        <file>png/007-1.png</file>
-        <file>png/008-2.png</file>
-        <file>png/009-3.png</file>
-        <file>png/010-4.png</file>
-        <file>png/011-5.png</file>
-        <file>png/012-6.png</file>
-        <file>png/013-7.png</file>
-        <file>png/014-8.png</file>
-        <file>png/015-9.png</file>
+        <file alias="flag">png/002-flags.png</file>
+        <file alias="unknown">png/003-question-mark.png</file>
+        <file alias="invisible">png/004-square.png</file>
+        <file alias="visible">png/005-square-1.png</file>
+        <file alias="empty">png/006-square-2.png</file>
+        <file alias="num1">png/007-1.png</file>
+        <file alias="num2">png/008-2.png</file>
+        <file alias="num3">png/009-3.png</file>
+        <file alias="num4">png/010-4.png</file>
+        <file alias="num5">png/011-5.png</file>
+        <file alias="num6">png/012-6.png</file>
+        <file alias="num7">png/013-7.png</file>
+        <file alias="num8">png/014-8.png</file>
+        <file alias="num9">png/015-9.png</file>
         <file>png/016-happy.png</file>
         <file>png/017-happy-1.png</file>
     </qresource>
