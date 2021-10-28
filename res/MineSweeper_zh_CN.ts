@@ -64,67 +64,67 @@ p, li { white-space: pre-wrap; }
     <name>MainWindow</name>
     <message>
         <location filename="../src/mainwindow.ui" line="17"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="122"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="144"/>
         <source>扫雷</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="151"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="139"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="161"/>
         <source>设置</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="157"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="140"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="162"/>
         <source>游戏</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="168"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="123"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="145"/>
         <source>退出</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="171"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="125"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="147"/>
         <source>Esc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="176"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="127"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="149"/>
         <source>新游戏</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="179"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="129"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="151"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="184"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="131"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="153"/>
         <source>重新开始</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="187"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="133"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="155"/>
         <source>Ctrl+R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="192"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="135"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="157"/>
         <source>关于</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="195"/>
-        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="137"/>
+        <location filename="../build/MineSweeper_autogen/include_Debug/ui_mainwindow.h" line="159"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>

@@ -25,10 +25,14 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainwindow.ui
         src/scene.cpp
+        src/res.cpp
+        src/mine.cpp
         include/about.h
         include/gamemode.h
         include/mainwindow.h
         include/scene.h
+        include/res.h
+        include/mine.h
         res/res.qrc
         ${TS_FILES}
 )

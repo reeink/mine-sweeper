@@ -39,8 +39,13 @@ void BlockPainter::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     return QGraphicsPixmapItem::paint(painter, &op, widget);
 }
 
-BlockPainter::BlockPainter(QGraphicsItem *parent) : Block(parent)
+void BlockPainter::set(int status)
 {
+    static ResPixmap pixmaps;
+    if (status >= EMPTY && status <= VISIBLE)
+    {
+        this->setPixmap(pixmaps.getBlock(status));
+    }
 }
 
 // class Scene
@@ -52,7 +57,6 @@ Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(p
                                                                 row_(row),
                                                                 col_(col)
 {
-    //painter_ = new QPainter(this);
     block_ = new vector<BlockPainter>(row * col);
     qDebug() << "初始化场景中...";
     int pos;
@@ -61,7 +65,6 @@ Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(p
         for (int j = 0; j < col; j++)
         {
             pos = i * col + j;
-            block_->at(pos).painter_ = painter_;
             block_->at(pos).init(i, j);
 
             block_->at(pos).setPos(i * gl_block_size, j * gl_block_size);
@@ -73,11 +76,7 @@ Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(p
             // TODO: connect!
         }
     }
-    qDebug()<<"block大小："<<block_->at(0).boundingRect().width();
-    //pixmaps_ = new QPixmap[5];
-
-    // QLine line(0, 0, 200, 200);
-    // this->painter_->drawLine(line);
+    qDebug() << "block大小：" << block_->at(0).boundingRect().width();
 }
 
 Scene::~Scene()
@@ -86,7 +85,7 @@ Scene::~Scene()
     delete[] block_;
 }
 
-void Scene::paint(int &row, int &col)
+void Scene::set(int &row, int &col, const int status)
 {
-    //block_->at(row * col_ + col).paint();
+    block_->at(row * col_ + col).set(status);
 }
