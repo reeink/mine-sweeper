@@ -2,11 +2,14 @@
 #include "ui_mainwindow.h"
 #include "./include/about.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), time(0, 0, 0), timer(this), is_start(false)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
+                                          ui(new Ui::MainWindow),
+                                          time(0, 0, 0),
+                                          timer(this),
+                                          is_start(false)
 {
     ui->setupUi(this);
-    setFixedSize(300, 500);
+    //setFixedSize(300, 500);
     ui->startButton->setIcon(QIcon(":/png/smile0.png"));
     ui->startButton->setIconSize(ui->startButton->size() / 4 * 3);
     connect(&timer, SIGNAL(timeout()), this, SLOT(updateTime()));
@@ -60,6 +63,7 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::initScene()
 {
-    scene_ = new Scene(mode_info_.row, mode_info_.col, this);
-    
+    scene_ = new Scene(mode_info_.row, mode_info_.col);
+    //view_->setScene(scene_);
+    ui->sceneView->setScene(scene_);
 }

@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QDebug>
+#include <QGraphicsView>
 #include "./include/gamemode.h"
 #include "./include/about.h"
 #include "./include/scene.h"

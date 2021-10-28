@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/png">
-        <file>png/001-bomb.png</file>
+        <file alias="bomb">png/001-bomb.png</file>
         <file>png/002-flags.png</file>
         <file>png/003-question-mark.png</file>
         <file>png/004-square.png</file>
         <file>png/005-square-1.png</file>
-        <file>png/006-square-2.png</file>
+        <file alias="block">png/006-square-2.png</file>
         <file>png/007-1.png</file>
         <file>png/008-2.png</file>
         <file>png/009-3.png</file>

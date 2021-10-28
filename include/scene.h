@@ -7,9 +7,13 @@
 #include <QPainter>
 #include <QWidget>
 #include <vector>
+#include <QDebug>
+#include <QGraphicsSceneMouseEvent>
+#include <QStyleOptionGraphicsItem>
+#include <QStyle>
 using std::vector;
 
-const int gl_block_size = 50;
+const int gl_block_size = 24;
 
 namespace Ui
 {
@@ -30,7 +34,8 @@ signals:
     void check();
 
 public:
-    void mousePressEvent(QMouseEvent *event);
+    Block(QGraphicsItem *parent = NULL);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event)override;
     void init(const int &row, const int &col);
 };
 
@@ -43,12 +48,11 @@ private:
     QPainter *painter_;
 
 public:
-    BlockPainter();
-    BlockPainter(QPainter *&painter);
-    void paint(QPixmap *&pixmap);
+    BlockPainter(QGraphicsItem *parent = NULL);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
-class Scene : public QWidget
+class Scene : public QGraphicsScene
 {
     Q_OBJECT;
 
@@ -59,8 +63,8 @@ private:
     vector<BlockPainter> *block_;
 
 public:
-    Scene(QWidget *parent = NULL);
-    Scene(const int &row, const int &col, QWidget *parent = NULL);
+    Scene(QObject *parent = NULL);
+    Scene(const int &row, const int &col, QObject *parent = NULL);
     ~Scene();
 
 public slots:
