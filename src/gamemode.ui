@@ -30,12 +30,38 @@
     <normaloff>:/png/res/png/001-bomb.png</normaloff>:/png/res/png/001-bomb.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="1">
-    <widget class="QPushButton" name="CustomizeMode">
+   <item row="0" column="0">
+    <spacer name="left">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="HardMode">
      <property name="text">
-      <string>自定义</string>
+      <string>困难</string>
      </property>
     </widget>
+   </item>
+   <item row="0" column="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="EasyMode">
@@ -50,39 +76,6 @@
       <string>普通</string>
      </property>
     </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="HardMode">
-     <property name="text">
-      <string>困难</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <spacer name="left">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

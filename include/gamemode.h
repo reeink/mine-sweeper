@@ -33,8 +33,6 @@ private slots:
 
     void on_HardMode_clicked();
 
-    void on_CustomizeMode_clicked();
-
 private:
     Ui::GameMode *ui;
     GameModeInfo &mode_info_;

@@ -24,9 +24,7 @@ protected:
     int col_;
 
 signals:
-    void click(const int row, const int col);
-    void mark(const int row, const int col);
-    void check();
+    void click(const int row, const int col,const int signal);
 
 public:
     Block(QGraphicsItem *parent = NULL);
@@ -65,4 +63,8 @@ public:
 
 public slots:
     void updateBlockUi(const int row, const int col, const int status);
+    void blockClick(const int row, const int col, const int signal);
+
+signals:
+    void mouseActions(const int row, const int col, const int signal);
 };

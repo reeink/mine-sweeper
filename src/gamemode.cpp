@@ -39,8 +39,3 @@ void GameMode::on_HardMode_clicked()
     qDebug() << "设置游戏为困难模式";
     accept();
 }
-
-void GameMode::on_CustomizeMode_clicked()
-{
-    reject();
-}
