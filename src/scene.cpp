@@ -53,7 +53,7 @@ Scene::Scene(const GameModeInfo &mode_info, QObject *parent) : QGraphicsScene(pa
                                                                mode_info_(mode_info)
 {
     block_ = new vector<BlockPainter>(mode_info_.row * mode_info_.col);
-    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info.mine_num, 1, 1);
+    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info.mine_num);
     initScene(mode_info_);
 }
 
@@ -88,7 +88,7 @@ void Scene::changeScene(const GameModeInfo &mode_info)
 {
     mode_info_ = mode_info;
     delete[] mine_data_;
-    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info_.mine_num, 1, 1);
+    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info_.mine_num);
     delete (block_);
     block_ = new vector<BlockPainter>(mode_info_.row * mode_info_.col);
     initScene(mode_info_);
