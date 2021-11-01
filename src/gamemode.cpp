@@ -6,6 +6,7 @@ GameMode::GameMode(GameModeInfo &mode_info, QWidget *parent) : QDialog(parent),
                                                                mode_info_(mode_info)
 {
     ui->setupUi(this);
+    mode_info_ = gl_easy_mode_info;
 }
 
 GameMode::~GameMode()

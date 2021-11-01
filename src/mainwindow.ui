@@ -139,11 +139,14 @@
         <height>240</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QGraphicsView{background-color: rgba(0,0,0,0);
+border: 0px;}</string>
+      </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -172,7 +175,6 @@
      <addaction name="newGameHard"/>
     </widget>
     <addaction name="menu"/>
-    <addaction name="restartGame"/>
     <addaction name="exitGame"/>
    </widget>
    <addaction name="game"/>

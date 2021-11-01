@@ -73,6 +73,7 @@ void MainWindow::initScene()
     time = QTime(0, 0, 0);
     ui->timeKeeper->display(time.toString("hh:mm:ss"));
     is_start = false;
+    ui->timeKeeper->setPalette(time_keeper_palette_[0]);
 }
 
 void MainWindow::on_newGameEasy_triggered()
