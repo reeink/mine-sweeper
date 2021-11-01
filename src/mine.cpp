@@ -91,7 +91,7 @@ Mine::Mine()
 	has_mine = false;
 }
 
-Mine::Mine(const int row, const int col, const int mine_num, const int x, const int y)
+Mine::Mine(const int row, const int col, const int mine_num)
 {
 	this->row = row;
 	this->col = col;

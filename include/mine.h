@@ -59,7 +59,7 @@ private:
 
 public:
     Mine();
-    Mine(const int row, const int col, const int mine_num, const int x, const int y);
+    Mine(const int row, const int col, const int mine_num);
     ~Mine();
     void print();
     block blockData(const int x, const int y) const; //返回某一坐标的地雷数据
