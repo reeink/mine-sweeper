@@ -4,7 +4,7 @@
 using std::vector;
 
 #define BLOCK_KINDS 14
-const int gl_block_size = 24;
+const int gl_block_size = 36;
 
 class ResPixmap
 {

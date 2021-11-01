@@ -168,8 +168,8 @@
       <string>新游戏</string>
      </property>
      <addaction name="newGameEasy"/>
-     <addaction name="actionb"/>
-     <addaction name="actionc"/>
+     <addaction name="newGameNormal"/>
+     <addaction name="newGameHard"/>
     </widget>
     <addaction name="menu"/>
     <addaction name="restartGame"/>
@@ -210,7 +210,7 @@
     <string>Ctrl+1</string>
    </property>
   </action>
-  <action name="actionb">
+  <action name="newGameNormal">
    <property name="text">
     <string>普通</string>
    </property>
@@ -218,7 +218,7 @@
     <string>Ctrl+2</string>
    </property>
   </action>
-  <action name="actionc">
+  <action name="newGameHard">
    <property name="text">
     <string>困难</string>
    </property>

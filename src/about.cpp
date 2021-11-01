@@ -1,9 +1,8 @@
 #include "./include/about.h"
 #include "ui_about.h"
 
-About::About(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::About)
+About::About(QWidget *parent) : QDialog(parent),
+                                ui(new Ui::About)
 {
     ui->setupUi(this);
 }
@@ -18,4 +17,3 @@ void About::on_pushButton_clicked()
     this->close();
     About::~About();
 }
-

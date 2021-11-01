@@ -48,44 +48,55 @@ void BlockPainter::set(int status)
 }
 
 // class Scene
-Scene::Scene(QObject *parent) : QGraphicsScene(parent)
+
+Scene::Scene(const GameModeInfo &mode_info, QObject *parent) : QGraphicsScene(parent),
+                                                               mode_info_(mode_info)
 {
-    delete[] block_;
+    block_ = new vector<BlockPainter>(mode_info_.row * mode_info_.col);
+    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info.mine_num, 1, 1);
+    initScene(mode_info_);
 }
-Scene::Scene(const int &row, const int &col, QObject *parent) : QGraphicsScene(parent),
-                                                                row_(row),
-                                                                col_(col)
+
+Scene::~Scene()
 {
-    block_ = new vector<BlockPainter>(row * col);
-    mine_data_ = new Mine(row, col, 10, 1, 1);
+    delete (block_);
+    delete[] mine_data_;
+}
+
+void Scene::initScene(const GameModeInfo &mode_info)
+{
     qDebug() << "初始化场景中...";
     int pos;
-    for (int i = 0; i < row; i++)
+    for (int i = 0; i < mode_info_.row; i++)
     {
-        for (int j = 0; j < col; j++)
+        for (int j = 0; j < mode_info_.col; j++)
         {
-            pos = i * col + j;
+            pos = i * mode_info_.col + j;
             block_->at(pos).init(i, j);
 
-            block_->at(pos).setPos(i * gl_block_size, j * gl_block_size);
+            block_->at(pos).setPos(j * gl_block_size, i * gl_block_size);
             addItem(&(block_->at(pos)));
             updateBlockUi(i, j, mine_data_->VisibleData(i + 1, j + 1));
-            qDebug() << "connection 1" << connect(&(block_->at(pos)), SIGNAL(click(const int, const int, const int)), this, SLOT(blockClick(const int, const int, const int)));
-            qDebug() << "connection 2" << connect(mine_data_, SIGNAL(updateUserMap(const int, const int, const int)), this, SLOT(updateBlockUi(const int, const int, const int)));
+            connect(&(block_->at(pos)), SIGNAL(click(const int, const int, const int)), this, SLOT(blockClick(const int, const int, const int)));
+            connect(mine_data_, SIGNAL(updateUserMap(const int, const int, const int)), this, SLOT(updateBlockUi(const int, const int, const int)));
         }
     }
     qDebug() << "block大小：" << block_->at(0).boundingRect().width();
 }
 
-Scene::~Scene()
+void Scene::changeScene(const GameModeInfo &mode_info)
 {
-    delete[] painter_;
-    delete[] block_;
+    mode_info_ = mode_info;
+    delete[] mine_data_;
+    mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info_.mine_num, 1, 1);
+    delete (block_);
+    block_ = new vector<BlockPainter>(mode_info_.row * mode_info_.col);
+    initScene(mode_info_);
 }
 
 void Scene::updateBlockUi(const int row, const int col, const int status)
 {
-    block_->at(row * col_ + col).set(status);
+    block_->at(row * mode_info_.col + col).set(status);
 }
 
 void Scene::blockClick(const int row, const int col, const int signal)

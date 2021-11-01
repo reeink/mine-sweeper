@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPalette>
 #include <QTime>
 #include <QTimer>
 #include <QPainter>
@@ -29,6 +30,11 @@ public:
     void initScene();
 
 private slots:
+    void on_newGameHard_triggered();
+    void on_newGameNormal_triggered();
+    void on_newGameEasy_triggered();
+
+private slots:
     void on_about_triggered();
     void on_exitGame_triggered();
     void updateTime();
@@ -41,5 +47,6 @@ private:
     bool is_start;
     GameModeInfo mode_info_;
     Scene *scene_;
+    QPalette time_keeper_palette_[2];
 };
 #endif // MAINWINDOW_H

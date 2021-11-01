@@ -15,27 +15,21 @@ GameMode::~GameMode()
 
 void GameMode::on_EasyMode_clicked()
 {
-    mode_info_.col = 10;
-    mode_info_.row = 10;
-    mode_info_.mine_num = 10;
+    mode_info_ = gl_easy_mode_info;
     qDebug() << "设置游戏为简单模式";
     accept();
 }
 
 void GameMode::on_NormalMode_clicked()
 {
-    mode_info_.col = 25;
-    mode_info_.row = 25;
-    mode_info_.mine_num = 50;
+    mode_info_ = gl_normal_mode_info;
     qDebug() << "设置游戏为普通模式";
     accept();
 }
 
 void GameMode::on_HardMode_clicked()
 {
-    mode_info_.col = 50;
-    mode_info_.row = 50;
-    mode_info_.mine_num = 100;
+    mode_info_ = gl_hard_mode_info;
     qDebug() << "设置游戏为困难模式";
     accept();
 }

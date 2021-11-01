@@ -13,6 +13,8 @@
 #include <QStyle>
 #include "./include/res.h"
 #include "./include/mine.h"
+#include "./include/gamemode.h"
+
 using std::vector;
 
 class Block : public QObject, public QGraphicsPixmapItem
@@ -24,10 +26,11 @@ protected:
     int col_;
 
 signals:
-    void click(const int row, const int col,const int signal);
+    void click(const int row, const int col, const int signal);
 
 public:
     Block(QGraphicsItem *parent = NULL);
+    ~Block(){};
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void init(const int &row, const int &col);
 };
@@ -42,6 +45,7 @@ private:
 
 public:
     BlockPainter(QGraphicsItem *parent = NULL) : Block(parent){};
+    ~BlockPainter(){};
     void set(int status);
 };
 
@@ -50,15 +54,14 @@ class Scene : public QGraphicsScene
     Q_OBJECT;
 
 private:
-    int row_, col_;
-    QPainter *painter_;
-    QPixmap *pixmaps_;
     vector<BlockPainter> *block_;
     Mine *mine_data_;
+    GameModeInfo mode_info_;
 
 public:
-    Scene(QObject *parent = NULL);
-    Scene(const int &row, const int &col, QObject *parent = NULL);
+    Scene(const GameModeInfo &mode_info, QObject *parent = NULL);
+    void initScene(const GameModeInfo &mode_info);
+    void changeScene(const GameModeInfo &mode_info);
     ~Scene();
 
 public slots:
