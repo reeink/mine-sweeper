@@ -123,7 +123,7 @@ int Mine::mark(const int x, const int y)
 	else if (VisibleData(x, y) == INVISIBLE)
 	{
 		user_map->at(x, y) = FLAG;
-		emit updateUserMap(x, y, user_map->at(x, y));
+		emit updateUserMap(x, y, show(x, y));
 		flag_num++;
 		invisible_num--;
 		emit markchange(flag_num, unknown_num);
@@ -131,7 +131,7 @@ int Mine::mark(const int x, const int y)
 	else if (VisibleData(x, y) == FLAG)
 	{
 		user_map->at(x, y) = UNKNOWN;
-		emit updateUserMap(x, y, user_map->at(x, y));
+		emit updateUserMap(x, y, show(x, y));
 		unknown_num++;
 		flag_num--;
 		emit markchange(flag_num, unknown_num);
@@ -177,12 +177,12 @@ int Mine::click(const int x, const int y)
 					}
 				}
 				user_map->at(xy.x, xy.y) = VISIBLE;
-				emit updateUserMap(xy.x, xy.y, VISIBLE);
+				emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
 				invisible_num--;
 			}
 			else {
 				user_map->at(xy.x, xy.y) = VISIBLE;
-				emit updateUserMap(xy.x, xy.y, VISIBLE);
+				emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
 				invisible_num--;
 			}
 		}
@@ -198,7 +198,7 @@ int Mine::click(const int x, const int y)
 		if (VisibleData(x, y) == INVISIBLE)
 		{
 			user_map->at(x, y) = VISIBLE;
-			emit updateUserMap(x, y, VISIBLE);
+			emit updateUserMap(x, y, show(x, y));
 			invisible_num--;
 			return 1;
 		}
@@ -298,13 +298,13 @@ void Mine::game_loss(const int x, const int y)
 	{
 		if (VisibleData(iter % col, iter / col) != VISIBLE) {
 			user_map->at(iter) = VISIBLE;
-			emit updateUserMap(iter % col, iter / col, VISIBLE);
+			emit updateUserMap(iter % col, iter / col, show(iter % col,iter / col));
 		}
 	}
 	flag_num = unknown_num = 0;
 	emit markchange(flag_num, unknown_num);
 	user_map->at(x, y) = EXPLODE_MINE;
-	emit updateUserMap(x, y, EXPLODE_MINE);
+	emit updateUserMap(x, y, show(x, y));
 	emit lossSignal();
 }
 
@@ -314,7 +314,7 @@ void Mine::game_win()
 	{
 		if (VisibleData(iter % col, iter / col) != VISIBLE) {
 			user_map->at(iter) = VISIBLE;
-			emit updateUserMap(iter % col, iter / col, VISIBLE);
+			emit updateUserMap(iter % col, iter / col, show(iter % col, iter / col));
 		}
 	}
 	flag_num = unknown_num = 0;

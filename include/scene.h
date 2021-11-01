@@ -69,5 +69,7 @@ public slots:
     void blockClick(const int row, const int col, const int signal);
 
 signals:
-    void mouseActions(const int row, const int col, const int signal);
+    void clickScene(const int row, const int col);
+    void markScene(const int row, const int col);
+    void checkScene();
 };
