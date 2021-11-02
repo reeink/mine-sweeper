@@ -66,7 +66,7 @@ public:
     block VisibleData(const int x, const int y) const; //判断某个区域对用户是否可见，（FLAG和UNKNOWN标记均为不可见）
     int create_mine(const int x, const int y);
     block show(const int x, const int y);
-    void game_loss(const int x, const int y);
+    void game_lose(const int x, const int y);
     void game_win();
 
 public slots:
@@ -76,7 +76,7 @@ public slots:
 
 signals:
     void updateUserMap(const int x, const int y, const int status);
-    void lossSignal();
+    void loseSignal();
     void winSignal();
     void markchange(const int flag, const int unknown);
 };
