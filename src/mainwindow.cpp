@@ -6,11 +6,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow),
                                           time(0, 0, 0),
                                           timer(this),
-                                          is_start(false)
+                                          is_start(false),
+                                          is_over(false),
+                                          mode_info_(gl_easy_mode_info)
 {
     ui->setupUi(this);
-    //setFixedSize(300, 500);
-    ui->startButton->setIcon(QIcon(":/png/smile0.png"));
+    setMinimumSize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
+    //setSize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
+    ui->startButton->setFixedHeight(40);
+    ui->startButton->setFixedWidth(40);
+    ui->startButton->setIcon(QIcon(":/ico/meh"));
     ui->startButton->setIconSize(ui->startButton->size() / 4 * 3);
     connect(&timer, SIGNAL(timeout()), this, SLOT(updateTime()));
     ui->timeKeeper->display(time.toString("hh:mm:ss"));
@@ -50,20 +55,30 @@ void MainWindow::updateTime()
 
 void MainWindow::on_startButton_clicked()
 {
-    is_start = !is_start;
-    if (is_start)
+    if (!is_over)
     {
-        ui->timeKeeper->setPalette(time_keeper_palette_[1]);
-        ui->startButton->setIcon(QIcon(":/png/smile1.png"));
-        timer.start(1000);
+        is_start = !is_start;
+        if (is_start)
+        {
+            ui->timeKeeper->setPalette(time_keeper_palette_[1]);
+            ui->startButton->setIcon(QIcon(":/ico/smile"));
+            timer.start(1000);
+        }
+        else
+        {
+            ui->timeKeeper->setPalette(time_keeper_palette_[0]);
+            ui->startButton->setIcon(QIcon(":/ico/meh"));
+            timer.stop();
+        }
+        scene_->blockSignals(!is_start);
     }
     else
     {
-        ui->timeKeeper->setPalette(time_keeper_palette_[0]);
-        ui->startButton->setIcon(QIcon(":/png/smile0.png"));
-        timer.stop();
+        ui->startButton->setIcon(QIcon(":/ico/meh"));
+        delete (scene_);
+        initScene();
+        is_over = false;
     }
-    ui->startButton->setIconSize(ui->startButton->size() / 4 * 3);
 }
 
 void MainWindow::initScene()
@@ -74,12 +89,19 @@ void MainWindow::initScene()
     ui->timeKeeper->display(time.toString("hh:mm:ss"));
     is_start = false;
     ui->timeKeeper->setPalette(time_keeper_palette_[0]);
+    connect(scene_->getMineDataPtr(), SIGNAL(loseSignal()), this, SLOT(loseAction()));
+    connect(scene_->getMineDataPtr(), SIGNAL(winSignal()), this, SLOT(winAction()));
+    connect(scene_, SIGNAL(markChange()), this, SLOT(updateScore()));
+    scene_->blockSignals(!is_start);
+    updateScore();
 }
 
 void MainWindow::on_newGameEasy_triggered()
 {
+
     delete (scene_);
     mode_info_ = gl_easy_mode_info;
+    resize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
     initScene();
 }
 
@@ -87,6 +109,7 @@ void MainWindow::on_newGameNormal_triggered()
 {
     delete (scene_);
     mode_info_ = gl_normal_mode_info;
+    resize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
     initScene();
 }
 
@@ -94,5 +117,36 @@ void MainWindow::on_newGameHard_triggered()
 {
     delete (scene_);
     mode_info_ = gl_hard_mode_info;
+    resize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
     initScene();
+}
+
+void MainWindow::updateScore()
+{
+    QString score_str;
+    stringstream score_stream;
+    score_stream << setfill('0') << setw(2) << mode_info_.mine_num << ":"
+                 << setfill('0') << setw(2) << scene_->getUnknownNum() << ":"
+                 << setfill('0') << setw(2) << scene_->getFlagNum();
+    score_str = QString::fromStdString(score_stream.str());
+    if (score_str.length() != ui->score->digitCount() && score_str.length() > 8)
+    {
+        ui->score->setDigitCount(score_str.length());
+    }
+    ui->score->display(score_str);
+}
+
+void MainWindow::winAction()
+{
+    is_start = false;
+    ui->startButton->setIcon(QIcon(":/ico/laugh"));
+    scene_->blockSignals(!is_start);
+    is_over = true;
+}
+void MainWindow::loseAction()
+{
+    is_start = false;
+    ui->startButton->setIcon(QIcon(":/ico/dizzy"));
+    scene_->blockSignals(!is_start);
+    is_over = true;
 }

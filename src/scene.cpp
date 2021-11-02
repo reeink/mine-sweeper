@@ -41,7 +41,7 @@ void BlockPainter::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 void BlockPainter::set(int status)
 {
     static ResPixmap pixmaps;
-    if (status >= EMPTY && status <= VISIBLE)
+    if (status >= EMPTY && status <= EXPLODE_MINE)
     {
         this->setPixmap(pixmaps.getBlock(status));
     }
@@ -111,6 +111,7 @@ void Scene::blockClick(const int row, const int col, const int signal)
 
     case 2:
         emit markScene(row, col);
+        emit markChange();
         break;
     }
     emit checkScene();

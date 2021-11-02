@@ -51,7 +51,7 @@ public:
 
 class Scene : public QGraphicsScene
 {
-    Q_OBJECT;
+    Q_OBJECT
 
 private:
     vector<BlockPainter> *block_;
@@ -60,9 +60,12 @@ private:
 
 public:
     Scene(const GameModeInfo &mode_info, QObject *parent = NULL);
+    ~Scene();
     void initScene(const GameModeInfo &mode_info);
     void changeScene(const GameModeInfo &mode_info);
-    ~Scene();
+    int getFlagNum() { return mine_data_->getFlagNum(); };
+    int getUnknownNum() { return mine_data_->getUnknownNum(); };
+    Mine *getMineDataPtr() { return mine_data_; };
 
 public slots:
     void updateBlockUi(const int row, const int col, const int status);
@@ -71,5 +74,6 @@ public slots:
 signals:
     void clickScene(const int row, const int col);
     void markScene(const int row, const int col);
+    void markChange();
     void checkScene();
 };

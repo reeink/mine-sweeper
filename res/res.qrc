@@ -1,38 +1,33 @@
 <RCC>
-    <qresource prefix="/png">
-        <file alias="bomb">png/001-bomb.png</file>
-        <file alias="flag">png/002-flags.png</file>
-        <file alias="unknown">png/003-question-mark.png</file>
-        <file alias="invisible">png/004-square.png</file>
-        <file alias="visible">png/005-square-1.png</file>
-        <file alias="empty">png/006-square-2.png</file>
-        <file alias="num1">png/007-1.png</file>
-        <file alias="num2">png/008-2.png</file>
-        <file alias="num3">png/009-3.png</file>
-        <file alias="num4">png/010-4.png</file>
-        <file alias="num5">png/011-5.png</file>
-        <file alias="num6">png/012-6.png</file>
-        <file alias="num7">png/013-7.png</file>
-        <file alias="num8">png/014-8.png</file>
-        <file alias="num9">png/015-9.png</file>
-        <file>png/016-happy.png</file>
-        <file>png/017-happy-1.png</file>
+    <qresource prefix="/block">
+        <file alias="explode">block/explode.png</file>
+        <file alias="flag">block/flag.png</file>
+        <file alias="invisible">block/invisible.png</file>
+        <file alias="mine">block/mine.png</file>
+        <file alias="num1">block/num1.png</file>
+        <file alias="num2">block/num2.png</file>
+        <file alias="num3">block/num3.png</file>
+        <file alias="num4">block/num4.png</file>
+        <file alias="num5">block/num5.png</file>
+        <file alias="num6">block/num6.png</file>
+        <file alias="num7">block/num7.png</file>
+        <file alias="num8">block/num8.png</file>
+        <file alias="unknown">block/unknown.png</file>
+        <file alias="visible">block/visible.png</file>
     </qresource>
-    <qresource prefix="/">
-        <file alias="explode_mine">jpg/explode_mine.jpg</file>
-        <file alias="flag">jpg/flag.jpg</file>
-        <file alias="invisible">jpg/invisible.jpg</file>
-        <file alias="mine">jpg/mine.jpg</file>
-        <file alias="num1">jpg/num1.jpg</file>
-        <file alias="num2">jpg/num2.jpg</file>
-        <file alias="num3">jpg/num3.jpg</file>
-        <file alias="num4">jpg/num4.jpg</file>
-        <file alias="num5">jpg/num5.jpg</file>
-        <file alias="num6">jpg/num6.jpg</file>
-        <file alias="num7">jpg/num7.jpg</file>
-        <file alias="num8">jpg/num8.jpg</file>
-        <file>jpg/visible.jpg</file>
-        <file alias="unknown">jpg/unknown.jpg</file>
-        <file alias="visible">jpg/visible2.jpg</file>
+    <qresource prefix="/ico">
+        <file alias="bomb">ico/001-bomb.png</file>
+        <file alias="question">ico/003-question-mark.png</file>
+        <file alias="game">ico/018-rubik.png</file>
+        <file alias="game2">ico/020-console.png</file>
+        <file alias="setting">ico/021-setting.png</file>
+        <file alias="quit">ico/030-logout.png</file>
+        <file alias="1">ico/007-1.png</file>
+        <file alias="2">ico/008-2.png</file>
+        <file alias="3">ico/009-3.png</file>
+        <file alias="dizzy">ico/022-dizzy.png</file>
+        <file alias="smile">ico/023-smiling-face.png</file>
+        <file alias="laugh">ico/024-laughing.png</file>
+        <file alias="meh">ico/026-meh.png</file>
     </qresource>
 </RCC>

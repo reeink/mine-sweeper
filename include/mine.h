@@ -62,12 +62,14 @@ public:
     Mine(const int row, const int col, const int mine_num);
     ~Mine();
     void print();
-    block blockData(const int x, const int y) const; //返回某一坐标的地雷数据
+    block blockData(const int x, const int y) const;   //返回某一坐标的地雷数据
     block VisibleData(const int x, const int y) const; //判断某个区域对用户是否可见，（FLAG和UNKNOWN标记均为不可见）
     int create_mine(const int x, const int y);
     block show(const int x, const int y);
     void game_lose(const int x, const int y);
     void game_win();
+    int getFlagNum() { return flag_num; };
+    int getUnknownNum() { return unknown_num; };
 
 public slots:
     int click(const int x, const int y);
