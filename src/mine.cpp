@@ -249,21 +249,26 @@ int Mine::create_mine(const int x, const int y)
 {
 	int new_row = 0, new_col = 0;
 	int mine_count = mine_num;
-	for (; mine_count != 0; mine_count--)
-	{
+	const int drow[9] = { -1, -1, -1, 0, 0, 1, 1, 1 ,0};
+	const int dcol[9] = { -1, 0, 1, -1, 1, -1, 0, 1 ,0};
+	for (int i = 0; i < mine_num; i++)
+		data_map->at(i) = MINE;
+	for (int i = row * col - 10; i >= 0; i--) {
 		srand((unsigned)time(NULL) + rand());
-		new_row = rand() % row;
-		new_col = rand() % col;
-		if (!(new_row < (y + 2) && new_row >(y - 2) && new_col < (x + 2) && new_col >(x - 2)) && new_col >= 0 && new_row >= 0)
-			if (data_map->at(new_col, new_row) != MINE)
-				data_map->at(new_col, new_row) = MINE;
-			else
-				mine_count++;
-		else
-			mine_count++;
+		int a = rand() % (i + 1);
+		int temp = data_map->at(a);
+		data_map->at(a) = data_map->at(i);
+		data_map->at(i) = temp;
 	}
-	const int drow[8] = { -1, -1, -1, 0, 0, 1, 1, 1 };
-	const int dcol[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+	for (int i = 0; i < 9; i++) {
+		new_row = y + drow[i];
+		new_col = x + dcol[i];
+		if (new_col >= 0 && new_row >= 0 && new_col < col && new_row < row)
+		{
+			data_map->at(row * col - i - 1) = data_map->at(new_col, new_row);
+			data_map->at(new_col, new_row) = EMPTY;
+		}
+	}
 	int iter = 0;
 	for (iter = 0; iter < row * col; iter++)
 	{
