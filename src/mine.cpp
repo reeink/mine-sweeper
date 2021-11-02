@@ -1,4 +1,4 @@
-#include "./include/mine.h"
+﻿#include "./include/mine.h"
 
 Matrix::Matrix(int row, int col, block blocktype)
 {
@@ -149,89 +149,94 @@ int Mine::mark(const int x, const int y)
 
 int Mine::click(const int x, const int y)
 {
-	if (has_mine == false) create_mine(x, y);
+	if (has_mine == false)
+		create_mine(x, y);
 	if (x > col || y > row || x < 0 || y < 0)
 		return 0;
 	stack<xy> s;
 	const int drow[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 	const int dcol[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
 	xy xy = {x, y};
-	if (blockData(x, y) == EMPTY)
+	if (VisibleData(x, y) == INVISIBLE)
 	{
-		s.push(xy);
-		while (!s.empty())
+		if (blockData(x, y) == EMPTY)
 		{
-			xy.x = s.top().x;
-			xy.y = s.top().y;
-			s.pop();
-			if (blockData(xy.x, xy.y) == EMPTY)
+			s.push(xy);
+			while (!s.empty())
 			{
-				for (int i = 0; i < 8; i++)
+				xy.x = s.top().x;
+				xy.y = s.top().y;
+				s.pop();
+				if (blockData(xy.x, xy.y) == EMPTY)
 				{
-					int nx = xy.x + dcol[i];
-					int ny = xy.y + drow[i];
-					struct xy nxy = {nx, ny};
-					if (0 < nx && nx <= col && ny > 0 && ny <= row && VisibleData(nx, ny) == INVISIBLE && blockData(nx, ny) != MINE)
+					for (int i = 0; i < 8; i++)
 					{
-						s.push(nxy);
+						int nx = xy.x + dcol[i];
+						int ny = xy.y + drow[i];
+						struct xy nxy = { nx, ny };
+						if (0 <= nx && nx < col && ny >= 0 && ny < row && VisibleData(nx, ny) != VISIBLE)
+						{
+							s.push(nxy);
+						}
+					}
+					if (VisibleData(xy.x, xy.y) == INVISIBLE)
+					{
+						user_map->at(xy.x, xy.y) = VISIBLE;
+						emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
+						invisible_num--;
 					}
 				}
-				user_map->at(xy.x, xy.y) = VISIBLE;
-				emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
-				invisible_num--;
+				else if (VisibleData(xy.x, xy.y) == INVISIBLE) 
+				{
+					user_map->at(xy.x, xy.y) = VISIBLE;
+					emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
+					invisible_num--;
+				}
 			}
-			else {
-				user_map->at(xy.x, xy.y) = VISIBLE;
-				emit updateUserMap(xy.x, xy.y, show(xy.x, xy.y));
-				invisible_num--;
-			}
+			return 1;
 		}
-		return 1;
-	}
-	else if (blockData(x, y) == MINE)
-	{
-		game_loss(x,y);
-		return -1;
-	}
-	else
-	{
-		if (VisibleData(x, y) == INVISIBLE)
+		else if (blockData(x, y) == MINE)
+		{
+			game_lose(x, y);
+			return -1;
+		}
+		else
 		{
 			user_map->at(x, y) = VISIBLE;
 			emit updateUserMap(x, y, show(x, y));
 			invisible_num--;
 			return 1;
 		}
-		else if (VisibleData(x, y) == VISIBLE)
+	}
+	else if (VisibleData(x, y) == VISIBLE)
+	{
+		int Flag_count = 0;
+		for (int i = 0; i < 8; i++)
 		{
-			int Flag_count = 0;
+			int nx = x + dcol[i];
+			int ny = y + drow[i];
+			if (0 <= nx && nx < col && ny >= 0 && ny < row && VisibleData(nx, ny) == FLAG)
+			{
+				Flag_count++;
+			}
+		}
+		if (Flag_count >= blockData(xy.x, xy.y))
+		{
 			for (int i = 0; i < 8; i++)
 			{
 				int nx = x + dcol[i];
 				int ny = y + drow[i];
-				if (0 <= nx && nx < col && ny >= 0 && ny < row && VisibleData(nx, ny) == FLAG)
+				if (0 <= nx && nx < col && ny >= 0 && ny < row && VisibleData(nx, ny) == INVISIBLE)
 				{
-					Flag_count++;
+					click(nx, ny);
 				}
 			}
-			if (Flag_count >= blockData(xy.x, xy.y))
-			{
-				for (int i = 0; i < 8; i++)
-				{
-					int nx = x + dcol[i];
-					int ny = y + drow[i];
-					if (0 <= nx && nx < col && ny >= 0 && ny < row && VisibleData(nx, ny) == INVISIBLE)
-					{
-						click(nx, ny);
-					}
-				}
-			}
-			return 1;
 		}
-		else
-		{
-			return 0;
-		}
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 }
 
@@ -284,20 +289,22 @@ int Mine::create_mine(const int x, const int y)
 
 block Mine::show(const int x, const int y)
 {
-	if (user_map->at(x, y) == VISIBLE) {
+	if (user_map->at(x, y) == VISIBLE)
+	{
 		return data_map->at(x, y);
 	}
-	else {
+	else
+	{
 		return user_map->at(x, y);
 	}
 }
 
-void Mine::game_loss(const int x, const int y)
+void Mine::game_lose(const int x, const int y)
 {
 	for (int iter = 0; iter < col * row; iter++)
 	{
 		if (VisibleData(iter % col, iter / col) != VISIBLE) {
-			user_map->at(iter) = VISIBLE;
+            user_map->at(iter) = VISIBLE;
 			emit updateUserMap(iter % col, iter / col, show(iter % col,iter / col));
 		}
 	}
@@ -305,7 +312,7 @@ void Mine::game_loss(const int x, const int y)
 	emit markchange(flag_num, unknown_num);
 	user_map->at(x, y) = EXPLODE_MINE;
 	emit updateUserMap(x, y, show(x, y));
-	emit lossSignal();
+	emit loseSignal();
 }
 
 void Mine::game_win()
@@ -314,6 +321,10 @@ void Mine::game_win()
 	{
 		if (VisibleData(iter % col, iter / col) != VISIBLE) {
 			user_map->at(iter) = VISIBLE;
+			emit updateUserMap(iter % col, iter / col, show(iter % col, iter / col));
+		}
+		if (blockData(iter % col, iter / col) == MINE) {
+			user_map->at(iter) = FLAG;
 			emit updateUserMap(iter % col, iter / col, show(iter % col, iter / col));
 		}
 	}
