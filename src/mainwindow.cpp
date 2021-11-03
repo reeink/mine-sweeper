@@ -94,6 +94,7 @@ void MainWindow::initScene()
     connect(scene_, SIGNAL(markChange()), this, SLOT(updateScore()));
     scene_->blockSignals(!is_start);
     updateScore();
+    ui->startButton->setIcon(QIcon(":/ico/meh"));
 }
 
 void MainWindow::on_newGameEasy_triggered()

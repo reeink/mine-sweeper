@@ -65,9 +65,9 @@ Scene::~Scene()
 void Scene::initScene(const GameModeInfo &mode_info)
 {
     mine_data_ = new Mine(mode_info_.row, mode_info_.col, mode_info_.mine_num);
-    qDebug() << "连接鼠标点击动作：" << connect(this, SIGNAL(clickScene(const int, const int)), mine_data_, SLOT(click(const int, const int)));
-    qDebug() << "连接鼠标标记动作：" << connect(this, SIGNAL(markScene(const int, const int)), mine_data_, SLOT(mark(const int, const int)));
-    qDebug() << "连接游戏获胜检查动作：" << connect(this, SIGNAL(checkScene()), mine_data_, SLOT(checkWin()));
+    connect(this, SIGNAL(clickScene(const int, const int)), mine_data_, SLOT(click(const int, const int)));
+    connect(this, SIGNAL(markScene(const int, const int)), mine_data_, SLOT(mark(const int, const int)));
+    connect(this, SIGNAL(checkScene()), mine_data_, SLOT(checkWin()));
     qDebug() << "初始化场景中...";
     int pos;
     for (int i = 0; i < mode_info_.row; i++)
