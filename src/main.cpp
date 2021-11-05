@@ -20,17 +20,10 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    MainWindow w;
-    w.show();
 
-    //游戏模式选择
-    // GameModeInfo &mode_info = w.getModeInfo();
-    // GameMode mode_page(mode_info);
-    // mode_page.exec();
-    // qDebug() << "游戏难度信息：\n"
-    //          << "行：" << mode_info.row << "，列：" << mode_info.col << "，地雷数：" << mode_info.mine_num;
-    
-    w.initScene();
+    MainWindow w;
+    w.show();      //进入主界面
+    w.initScene(); //初始化游戏场景
 
     return a.exec();
 }

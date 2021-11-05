@@ -2,6 +2,7 @@
 
 void ResPixmap::initBlock()
 {
+    //序号和mine.h中的变量保持一致
     blocks_.at(0).load(":/block/visible");
     blocks_.at(1).load(":/block/num1");
     blocks_.at(2).load(":/block/num2");

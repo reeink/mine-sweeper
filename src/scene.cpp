@@ -29,15 +29,6 @@ void Block::init(const int &row, const int &col)
 }
 
 // class BlockPainter
-void BlockPainter::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    QStyleOptionGraphicsItem op;
-    op.initFrom(widget);
-    op.state = QStyle::State_None;
-
-    return QGraphicsPixmapItem::paint(painter, &op, widget);
-}
-
 void BlockPainter::set(int status)
 {
     static ResPixmap pixmaps;
@@ -48,7 +39,6 @@ void BlockPainter::set(int status)
 }
 
 // class Scene
-
 Scene::Scene(const GameModeInfo &mode_info, QObject *parent) : QGraphicsScene(parent),
                                                                mode_info_(mode_info)
 {
@@ -76,7 +66,6 @@ void Scene::initScene(const GameModeInfo &mode_info)
         {
             pos = i * mode_info_.col + j;
             block_->at(pos).init(i, j);
-
             block_->at(pos).setPos(j * gl_block_size, i * gl_block_size);
             addItem(&(block_->at(pos)));
             updateBlockUi(i, j, mine_data_->show(i, j));
@@ -85,15 +74,6 @@ void Scene::initScene(const GameModeInfo &mode_info)
         }
     }
     qDebug() << "block大小：" << block_->at(0).boundingRect().width();
-}
-
-void Scene::changeScene(const GameModeInfo &mode_info)
-{
-    mode_info_ = mode_info;
-    delete (mine_data_);
-    delete (block_);
-    block_ = new vector<BlockPainter>(mode_info_.row * mode_info_.col);
-    initScene(mode_info_);
 }
 
 void Scene::updateBlockUi(const int row, const int col, const int status)

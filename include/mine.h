@@ -63,18 +63,20 @@ public:
     ~Mine();
     void print();
     block blockData(const int x, const int y) const;   //返回某一坐标的地雷数据
-    block VisibleData(const int x, const int y) const; //判断某个区域对用户是否可见，（FLAG和UNKNOWN标记均为不可见）
-    int create_mine(const int x, const int y);
-    block show(const int x, const int y);
-    void game_lose(const int x, const int y);
-    void game_win();
+    block visibleData(const int x, const int y) const; //判断某个区域对用户是否可见，（FLAG和UNKNOWN标记均为不可见）
+    block show(const int x, const int y);              //返回用户可见的方块信息
     int getFlagNum() { return flag_num; };
     int getUnknownNum() { return unknown_num; };
 
+private:
+    int create_mine(const int x, const int y);
+    void gameLose(const int x, const int y);
+    void gameWin();
+
 public slots:
-    int click(const int x, const int y);
-    int mark(const int x, const int y);
-    void checkWin();
+    int click(const int x, const int y); //点击方格
+    int mark(const int x, const int y);  //标记方格
+    void checkWin();                     //检查是否获胜
 
 signals:
     void updateUserMap(const int x, const int y, const int status);

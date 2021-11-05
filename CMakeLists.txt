@@ -11,10 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# for release
+# disable qDebug output
 add_definitions(-DQT_NO_WARNING_OUTPUT -DQT_NO_DEBUG_OUTPUT)
-# add_executable(${PROJECT_NAME} WIN32 ${SRC_FILES} )
-#
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
@@ -24,23 +22,18 @@ set(TS_FILES res/MineSweeper_zh_CN.ts)
 set(PROJECT_SOURCES
         src/about.cpp
         src/about.ui
-        src/gamemode.cpp
-        src/gamemode.ui
         src/main.cpp
         src/mainwindow.cpp
         src/mainwindow.ui
         src/scene.cpp
         src/res.cpp
         src/mine.cpp
-        #src/modify.cpp
-        #src/modify.ui
         include/about.h
         include/gamemode.h
         include/mainwindow.h
         include/scene.h
         include/res.h
         include/mine.h
-        #include/modify.h
         res/res.qrc
         MineSweeper.rc
         ${TS_FILES}
@@ -65,7 +58,7 @@ else()
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(MineSweeper WIN32
+        add_executable(MineSweeper
             ${PROJECT_SOURCES}
         )
     endif()

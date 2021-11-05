@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 {
     ui->setupUi(this);
     setMinimumSize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
-    //setSize(mode_info_.row * gl_block_size + 60, mode_info_.row * gl_block_size + 140);
     ui->startButton->setFixedHeight(40);
     ui->startButton->setFixedWidth(40);
     ui->startButton->setIcon(QIcon(":/ico/meh"));
@@ -55,7 +54,7 @@ void MainWindow::updateTime()
 
 void MainWindow::on_startButton_clicked()
 {
-    if (!is_over)
+    if (!is_over) //游戏未结束
     {
         is_start = !is_start;
         if (is_start)
@@ -72,12 +71,13 @@ void MainWindow::on_startButton_clicked()
         }
         scene_->blockSignals(!is_start);
     }
-    else
+    else //游戏结束
     {
         ui->startButton->setIcon(QIcon(":/ico/meh"));
         delete (scene_);
         initScene();
         is_over = false;
+        on_startButton_clicked(); //若不加此句用户在获胜后点击开始按钮即返回未开始状态，需要再次点击方可开始游戏
     }
 }
 
