@@ -2,6 +2,8 @@
 
 This is the First Project [@Zenossss](https://github.com/Zenossss) and I make with Qt and C++ while learning them. There are many mistakes and shortages. But don't care about it, it is just for fun… and the C++ experiment.
 
+![image-20211106111242580](https://cdn.jsdelivr.net/gh/sperjar/ImgHosting/PicGo/202111061112677.png)
+
 ## Environment
 
 - `Qt 6.2`
@@ -13,7 +15,7 @@ Before compiling this project, make sure you have configured the environment.
 
 - if you use `Qt Creater`, you can clone this repository, open `CMakeLists.txt` and compile.
 
-- You can also use command line to compile this project
+- You can also use command line to compile this project, but make sure you have add Qt to Path.
 
   ```shell
   git clone https://github.com/sperjar/MineSweeper.git
